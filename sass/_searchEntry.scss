@@ -79,5 +79,27 @@
                 color: $logo-red;
             }
         }
+
+        .searchButton{
+            @include mq(768px){
+                padding-left: 1rem;
+            }
+        }
+
+        .clear{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $stats-color;
+            border-right: thin solid $clear-buttom-color;
+            @include mq(768px){
+                padding: 0 1rem;
+            }
+        }
+    }
+
+    .searchBar:hover,
+    .searchBar:focus-within{
+        box-shadow: 0px 2px 5px 2px $search-bar-border;
     }
 }
