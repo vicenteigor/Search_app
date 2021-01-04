@@ -1,5 +1,5 @@
 import { setSearchFocus} from "./searchBar.js";
-import {buildSearchResults} from "./searchResults.js";
+import {deleteSearchResults, buildSearchResults, clearStatsLine, setStatsLine} from "./searchResults.js";
 import { getsearchTerm} from "./dataFunctions.js";
 document.addEventListener("readystatechange", (event) => {
     if(event.target.readyState === "complete"){
@@ -19,7 +19,7 @@ const initApp = () => {
 // procedural "workflow" function
 const submitTheSearch = (event) =>{
     event.preventDefault();
-    // delete search results
+    deleteSearchResults();
     processTheSearch();
     setSearchFocus();
 
@@ -28,10 +28,10 @@ const submitTheSearch = (event) =>{
 
 // procedural 
 const processTheSearch = async () => {
-    // clear the stats line
+        clearStatsLine();
     const searchTerm = getsearchTerm();
     if(searchTerm === "")return;
     const resultArray = await retrieveSearchResults(searchTerm);
     if(resultArray.length) buildSearchResults(resultArray);
-    // set stats line
+        setStatsLine(resultArray.length);
 }
